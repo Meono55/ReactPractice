@@ -96,3 +96,5 @@ class AddFriend extends React.Component{
 }
 
 ReactDOM.render(<FriendsContainer />, document.getElementById('root'))
+
+// LINK TO TUTORIAL : https://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/
