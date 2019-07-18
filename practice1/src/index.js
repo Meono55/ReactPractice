@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types'
 // class HelloWorld extends React.Component {
 //     constructor(props){
 //         super(props)
@@ -63,6 +64,10 @@ class ShowList extends React.Component{
     }
 }
 
+ShowList.defaultProps = {
+    names: []
+}
+
 class AddFriend extends React.Component{
     constructor(props){
         super(props)
@@ -90,6 +95,39 @@ class AddFriend extends React.Component{
             <div>
                 <input type="text" value={this.state.newFriend} onChange={this.updateNewFriend}></input>
                 <button onClick={this.handleAddNew}> Add Friend</button>
+            </div>
+        )
+    }
+}
+
+//LifeCycles
+
+class App extends React.Component{
+    constructor(props){
+        super(props)
+
+        this.state = {
+            name: 'Jose Meono'
+        }
+    }
+
+    componentDidMount(){
+        // Invoked once the component is mounted to the DOM
+        // Good for making AJAX requests
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        // The object you return from this function will be merged with the current state
+    }
+    componentWillUnmount(){
+        //called IMMEDIATELY before a component is unmounted
+        // Good for cleaning up listeners
+    }
+
+    render() {
+        return(
+            <div>
+                Hello, {this.state.name}
             </div>
         )
     }
