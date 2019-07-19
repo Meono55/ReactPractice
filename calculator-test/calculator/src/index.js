@@ -7,13 +7,23 @@ class App extends React.Component{
         super(props)
 
         this.state = {
-            number1 : '',
-            number2 : '',
-            result: '',
+            number1 : 0,
+            number2 : 0,
+            result: 0
         }
+        this.updateValues = this.updateValues.bind(this)
     }
     updateValues(e){
-
+        // we get the e.target.name (which will be either "number1" or "number2") and use it 
+        // to target the key on our 'state' object with the same name using bracket syntax
+        this.setState({
+            [e.target.name] : e.target.value 
+        })
+    }
+    calculateValues(number1, number2){
+        this.setState({
+            result: (1 * number1) + (1 * number2),
+        })
     }
     
 
@@ -23,18 +33,27 @@ class App extends React.Component{
             <div>
                 <h1>Calculator App</h1>
                 <label>Test: </label>
-                <input type="text" name="number1" value={this.state.number1} onChange={this.updateValues}></input>
+                <input type="text" name="number1"  onChange={this.updateValues}></input>
                 <label>Test2:</label>
-                <input type="text" name="number2" value={this.state.number2} onChange={this.updateValues}></input>
-                {/* <label>Test2: </label>
-                <input type="text" name="input2" value={this.state.number2} onChange={this.updateValues}></input> */}
+                <input type="text" name="number2"  onChange={this.updateValues}></input>
+                <div>
+                    <button onClick={() => this.calculateValues(this.state.number1,this.state.number2)}>Add</button>
+                    <h3>Result: {this.state.result}</h3>
+                    <Calculator number1={this.state.number1}></Calculator>
+                </div>
             </div>
         )
     }
 }
 
 class Calculator extends React.Component{
-
+    render() {
+        return(
+            <div className="Calculator">
+                {this.props.number1}
+            </div>
+        )
+    }
 }
 
 class Form extends React.Component{
